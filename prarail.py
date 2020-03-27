@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
-cam = praCamera(on_memory=True)
+cam = praCamera(on_memory=True,resolution=(640,480))
 
 GPIO.setwarnings(False)
 GPIO.cleanup()
@@ -54,7 +54,7 @@ def photo():
         img_b64 = "data:image/jpg;base64," + img_b64.decode('utf-8')
         message = img_b64
         ws.send(message)
-        sleep(0.1)
+        #sleep(0.1)
 
 if __name__ == '__main__':
     socketio.run(app,debug=True,host="0.0.0.0",port=5000)
