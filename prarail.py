@@ -33,6 +33,7 @@ def index():
 def speed():
     global SPEED
     SPEED = int(request.json["speed"])
+    print(SPEED*10)
     if SPEED > 0:
         MOTOR_BACK.ChangeDutyCycle(0)
         MOTOR_FRONT.ChangeDutyCycle(SPEED*10)
