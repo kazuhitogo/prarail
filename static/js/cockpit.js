@@ -1,12 +1,18 @@
 var drag = {
 	isMouseDown : false,	
-	offsety : 40
+	offset : 0
 }
+
+$(function(){
+	drag.offsety = $("#control_background").position().top + $("#control_bar").attr("height")/2
+})
+
 
 $(function(){
 	$("#control_bar").mousedown(function(e){
 		e.preventDefault();
 		drag.isMouseDown = true;
+		console.log()
 	})
 })
 
