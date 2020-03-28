@@ -27,9 +27,16 @@ $(function(){
 			}else if (move_y > 370){
 				move_y = 370;
 			}
+			move_y = (Math.round((move_y-10)/24,0))*24+10
+
 			$("#control_bar").attr("y",move_y)
-			let speed = -Math.round((move_y-190)*100/180)
+			let speed = -Math.round((move_y-190)*8/180)
 			display_num = String(speed)
+			if (speed == "8"){
+				display_num = "MAX"
+			}else if (speed == "-8"){
+				display_num = "MIN"
+			}
 			$('#speed_setting').text(display_num);
 		}
 

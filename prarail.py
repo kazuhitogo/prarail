@@ -35,10 +35,10 @@ def speed():
     SPEED = int(request.json["speed"])
     if SPEED > 0:
         MOTOR_BACK.ChangeDutyCycle(0)
-        MOTOR_FRONT.ChangeDutyCycle(SPEED)
+        MOTOR_FRONT.ChangeDutyCycle(SPEED*10)
     else:
         MOTOR_FRONT.ChangeDutyCycle(0)
-        MOTOR_BACK.ChangeDutyCycle(-SPEED)
+        MOTOR_BACK.ChangeDutyCycle(-SPEED*10)
     return request.json
 
 if __name__ == '__main__':
