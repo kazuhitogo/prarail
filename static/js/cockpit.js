@@ -19,7 +19,7 @@ $(function(){
 
 $(function(){	
 	$("#control_background").mousemove(function(e){
-		//e.preventDefault();
+		e.preventDefault();
 		if (drag.isMouseDown == true) {
 			let move_y = e.clientY - drag.offsety;
 			if (move_y < 10) {
