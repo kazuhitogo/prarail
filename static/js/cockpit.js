@@ -72,7 +72,7 @@ var sendSpeed = function(){
 			type: "POST",
 			data:JSON.stringify(
 				{
-					speed: $("#speed_setting").text(),
+					speed: speed,
 				}
 			),
 			url　: "http://192.168.21.20:5000/speed",
