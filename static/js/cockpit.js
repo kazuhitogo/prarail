@@ -12,7 +12,6 @@ $(function(){
 	$("#control_bar").mousedown(function(e){
 		e.preventDefault();
 		drag.isMouseDown = true;
-		console.log()
 	})
 })
 
@@ -61,6 +60,12 @@ $(function(){
 
 var sendSpeed = function(){
 	if (drag.isMouseDown == true) {
+		let speed = $("#speed_setting").text()
+		if (speed == "MAX"){
+			speed = "8"
+		}else if (speed == "MIN"){
+			speed = "-8"
+		}
 		$.ajax({
 			contentType : "application/json",
 			dataType : "json",
