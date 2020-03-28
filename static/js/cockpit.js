@@ -18,7 +18,8 @@ $(function(){
 
 
 $(function(){	
-	$(window).mousemove(function(e){
+	$("#control_background").mousemove(function(e){
+		//e.preventDefault();
 		if (drag.isMouseDown == true) {
 			let move_y = e.clientY - drag.offsety;
 			if (move_y < 10) {
@@ -37,41 +38,37 @@ $(function(){
 
 
 $(function(){
-	$("#body").mouseup(function(e){
-		if (drag.isMouseDown == true) {
-			$.ajax({
-				contentType : "application/json",
-				dataType : "json",
-				type: "POST",
-				data:JSON.stringify(
-					{
-						speed: $("#speed_setting").text(),
-					}
-				),
-				url　: "http://192.168.21.20:5000/speed",
-				success : function(json_data){console.log(json_data)},
-				error : function(data) {console.log("error", data);},
-				complete:function(){console.log("complete")},
-			})
-		}
-		drag.isMouseDown = false;
+	$("#control_background").mouseup(function(e){
+		e.preventDefault();
+		sendSpeed()
+		
 	})
 })
 
-var ws = new WebSocket("ws://192.168.21.20:5000/img");
-ws.onopen = function(){
-	ws.send("ping");
-}
-ws.onerror = function(){
-	console.log("websocket error");
-}
-ws.onclose = function(){
-	console.log("websocket close");
-}
-ws.onmessage = function(message){
-	$("#img").attr("src",message.data);
-}
+$(function(){
+	$("#mascon").mouseleave(function(e){
+		e.preventDefault();
+		sendSpeed()
+	})
+})
 
-$(window).on("unload", function(e) {
-    ws.onclose(); // WebSocket close
-});
+var sendSpeed = function(){
+	if (drag.isMouseDown == true) {
+		$.ajax({
+			contentType : "application/json",
+			dataType : "json",
+			type: "POST",
+			data:JSON.stringify(
+				{
+					speed: $("#speed_setting").text(),
+				}
+			),
+			url　: "http://192.168.21.20:5000/speed",
+			success : function(json_data){console.log(json_data)},
+			error : function(data) {console.log("error", data);},
+			complete:function(){console.log("complete")},
+		})
+
+	}
+	drag.isMouseDown = false;
+}
