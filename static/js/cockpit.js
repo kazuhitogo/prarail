@@ -26,14 +26,13 @@ $(function(){
 			}else if (move_y > 370){
 				move_y = 370;
 			}
-			move_y = (Math.round((move_y-10)/24,0))*24+10
-
+			move_y = Math.round((move_y-10)/30) * 30 + 10
 			$("#control_bar").attr("y",move_y)
-			let speed = -Math.round((move_y-190)*8/180)
+			let speed = -Math.round((move_y-10-180)/30)
 			display_num = String(speed)
-			if (speed == "8"){
+			if (speed == "6"){
 				display_num = "MAX"
-			}else if (speed == "-8"){
+			}else if (speed == "-6"){
 				display_num = "MIN"
 			}
 			$('#speed_setting').text(display_num);
@@ -62,9 +61,9 @@ var sendSpeed = function(){
 	if (drag.isMouseDown == true) {
 		let speed = $("#speed_setting").text()
 		if (speed == "MAX"){
-			speed = "8"
+			speed = "6"
 		}else if (speed == "MIN"){
-			speed = "-8"
+			speed = "-6"
 		}
 		$.ajax({
 			contentType : "application/json",
