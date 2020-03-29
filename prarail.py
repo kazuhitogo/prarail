@@ -32,14 +32,14 @@ def index():
 @app.route("/speed",methods=["POST"])
 def speed():
     global SPEED
-    SPEED = int(request.json["speed"])
-    print(SPEED*10)
+    SPEED = int(request.json["speed"]) * 15
+    print(SPEED)
     if SPEED > 0:
         MOTOR_BACK.ChangeDutyCycle(0)
-        MOTOR_FRONT.ChangeDutyCycle(SPEED*15)
+        MOTOR_FRONT.ChangeDutyCycle(SPEED)
     else:
         MOTOR_FRONT.ChangeDutyCycle(0)
-        MOTOR_BACK.ChangeDutyCycle(-SPEED*15)
+        MOTOR_BACK.ChangeDutyCycle(-SPEED)
     return request.json
 
 if __name__ == '__main__':
