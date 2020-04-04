@@ -9,9 +9,9 @@ import RPi.GPIO as GPIO
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app)
+# socketio = SocketIO(app)
 
-cam = praCamera(on_memory=True,resolution=(640,480))
+# cam = praCamera(on_memory=True,resolution=(640,480))
 
 GPIO.setwarnings(False)
 GPIO.cleanup()
@@ -43,4 +43,5 @@ def speed():
     return request.json
 
 if __name__ == '__main__':
-    socketio.run(app,debug=True,host="0.0.0.0",port=5000)
+    # socketio.run(app,debug=True,host="0.0.0.0",port=5000)
+    app.run(debug=True,host="0.0.0.0",port=5000)

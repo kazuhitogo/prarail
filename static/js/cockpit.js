@@ -59,6 +59,7 @@ $(function(){
 
 var sendSpeed = function(){
 	if (drag.isMouseDown == true) {
+		console.log("call sendspeed")
 		let speed = $("#speed_setting").text()
 		if (speed == "MAX"){
 			speed = "6"
