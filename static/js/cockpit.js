@@ -43,7 +43,7 @@ $(function(){
 
 
 $(function(){
-	$("#control_background").mouseup(function(e){
+	$("#control_bar").mouseup(function(e){
 		e.preventDefault();
 		sendSpeed()
 		
