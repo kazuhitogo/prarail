@@ -48,7 +48,7 @@ def speed():
 def sound(name=None):
     print(name)
     if name == None:
-        return True
+        return None
     else:
         sound_file = "./sound/" + name +".mp3"
         sound_detail = AudioSegment.from_file(sound_file, "mp3")
@@ -57,6 +57,7 @@ def sound(name=None):
         pygame.mixer.music.play(1)
         sleep(sound_detail.duration_seconds)
         pygame.mixer.music.stop()
+        return None
 
 
 
