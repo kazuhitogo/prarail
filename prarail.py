@@ -3,9 +3,10 @@ from flask_socketio import SocketIO, emit
 from gevent.pywsgi import WSGIServer
 from geventwebsocket.handler import WebSocketHandler
 from praCamera import praCamera
-import base64
+import base64,pygame
 from time import sleep
 import RPi.GPIO as GPIO
+from pydub import AudioSegment
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
@@ -41,6 +42,24 @@ def speed():
         MOTOR_FRONT.ChangeDutyCycle(0)
         MOTOR_BACK.ChangeDutyCycle(-SPEED)
     return request.json
+
+
+@app.route("/sound/<name>",method=["get"])
+def sound(name=None):
+    print(name)
+    if name == None:
+        return True
+    else:
+        sound_file = "./sound/" + name +".mp3"
+        sound_detail = AudioSegment.from_file(sound_file, "mp3")
+        pygame.mixer.init()
+        pygame.mixer.music.load(sound_file)
+        pygame.mixer.music.play(1)
+        sleep(sound_detail.duration_seconds)
+        pygame.mixer.music.stop()
+
+
+
 
 if __name__ == '__main__':
     # socketio.run(app,debug=True,host="0.0.0.0",port=5000)
