@@ -75,7 +75,7 @@ var sendSpeed = function(){
 					speed: speed,
 				}
 			),
-			url　: location.host + "/speed",
+			url　: "http://" + location.host + "/speed",
 			success : function(json_data){console.log(json_data)},
 			error : function(data) {console.log("error", data);},
 			complete:function(){console.log("complete")},
@@ -90,7 +90,7 @@ $(function(){
 	$("#play").click(function(e){
 		$.ajax({
 			type: "GET",
-			url　: location.host + "/sound/takanawa",
+			url　: "http://" + location.host + "/sound/takanawa",
 			success : function(r){console.log(r)},
 			error : function(e) {console.log("error", e);},
 			complete:function(){console.log("complete")},

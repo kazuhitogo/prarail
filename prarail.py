@@ -44,7 +44,7 @@ def speed():
     return request.json
 
 
-@app.route("/sound/<name>",method=["get"])
+@app.route("/sound/<name>")
 def sound(name=None):
     print(name)
     if name == None:
